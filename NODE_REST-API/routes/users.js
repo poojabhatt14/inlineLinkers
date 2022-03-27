@@ -2,6 +2,7 @@ const User = require("../models/User.js")
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
 
+
 //update user
 router.put("/:id" , async(req,res) =>{
     if(req.body.userId === req.params.id||req.body.isAdmin){
@@ -114,4 +115,5 @@ router.put("/:id/unfollow",async (req,res)=>{
         res.status(403).json("You can't unfollow yourself")
     }
 });
+
 module.exports = router;
