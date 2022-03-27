@@ -3,12 +3,13 @@ import "./login.css";
 import { loginCall } from "../../apiCalls.js"
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
-//import {CircularProgress} from "@mui/material";
+import { useHistory } from "react-router";
 
 export default function Login() {
   const email = useRef();
   const password = useRef();
-  const { isFetching, dispatch } = useContext(AuthContext); //diff
+  const { isFetching, dispatch } = useContext(AuthContext);
+  const history = useHistory();
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -17,6 +18,10 @@ export default function Login() {
       dispatch
     ); 
   };
+
+  const changePassword = async ()=>{
+    history.push("/forgot-password")
+  }
 
   return (
     <div className="login">
@@ -48,9 +53,9 @@ export default function Login() {
             <button className="loginButton" type="submit" disabled={isFetching}>
               {isFetching ?"Loading": "Log In"}
             </button> 
-            <span className="loginForgot">Forgot Password?</span>
+            <span className="loginForgot" onClick={changePassword}>Forgot Password?</span>
             <Link to="/" style={{ textDecoration: "none" }}>
-            <button className="loginRegisterButton">
+            <button className="registerLoginButton">
             {isFetching ?"Loading": "Create A New account"}
             </button>
             </Link>

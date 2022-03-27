@@ -9,6 +9,8 @@ export default function Register() {
   const email = useRef();
   const password = useRef();
   const passwordAgain = useRef();
+  const hostel = useRef();
+  const otp = useRef();
   const history = useHistory();
 
   const handleClick = async (e) => {
@@ -17,9 +19,11 @@ export default function Register() {
       passwordAgain.current.setCustomValidity("Passwords don't match!");
     } else {
       const user = {
-        username: username.current.value,
         email: email.current.value,
+        otp: otp.current.value,
+        username: username.current.value,
         password: password.current.value,
+        hostel: hostel.current.value,
       };
       try {
         await axios.post("/auth/register", user);
@@ -31,34 +35,46 @@ export default function Register() {
   };
 
   return (
-    <div className="login">
-      <div className="loginWrapper">
-        <div className="loginLeft">
-          <h3 className="loginLogo">Inline Linkers</h3>
-          <span className="loginDesc">
+    <div className="register">
+      <div className="registerWrapper">
+        <div className="registerLeft">
+          <h3 className="registerLogo">Inline Linkers</h3>
+          <span className="registerDesc">
             Inline Linkers making your life easier.
           </span>
         </div>
-        <div className="loginRight">
-          <form className="loginBox" onSubmit={handleClick}>
+        <div className="registerRight">
+          <form className="registerBox" onSubmit={handleClick}>
+          <input
+              placeholder="Confirm Email Id"
+              required
+              ref={email}
+              className="registerInput"
+              type="email"
+            />
+            <input
+              placeholder="Enter OTP"
+              required
+              ref={otp}
+              className="registerInput"
+            />
             <input
               placeholder="Username"
               required
               ref={username}
-              className="loginInput"
+              className="registerInput"
             />
             <input
-              placeholder="Email"
+              placeholder="Hostel Name"
               required
-              ref={email}
-              className="loginInput"
-              type="email"
+              ref={hostel}
+              className="registerInput"
             />
             <input
               placeholder="Password"
               required
               ref={password}
-              className="loginInput"
+              className="registerInput"
               type="password"
               minLength="6"
             />
@@ -66,10 +82,10 @@ export default function Register() {
               placeholder="Password Again"
               required
               ref={passwordAgain}
-              className="loginInput"
+              className="registerInput"
               type="password"
             />
-            <button className="loginButton" type="submit">
+            <button className="registerButton" type="submit">
               Sign Up
             </button>
             <Link to="/login" style={{ textDecoration: "none" }}>

@@ -1,0 +1,104 @@
+.verify {
+    width: 100vw;
+    height: 100vh;
+    background-color: #f0f2f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .verifyWrapper{
+    width: 70%;
+    height: 70%;
+    display: flex;
+  }
+
+  loginLeft,
+.verifyRight{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.verifyLogo{
+  font-size: 50px;
+  font-weight: 800;
+    color: #CE9DD9;
+  margin-bottom: 10px;
+}
+
+.verifytext{
+    font-size: 30px;
+    font-weight: 800;
+      color: #CE9DD9;
+    margin-bottom: 10px;
+  }
+
+  .verifyDesc {
+    font-size: 24px;
+  }
+  
+  .verifyBox{
+      height: 260px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  }
+  
+  .verifyInput{
+      height: 50px;
+      border-radius: 10px;
+      border: 1px solid gray;
+      font-size: 18px;
+      padding-left: 20px;
+  }
+  
+  .verifyInput:focus{
+      outline: none;
+  }
+  
+  .account{
+    text-align: center;
+    color: #CE9DD9;
+}
+
+  .verifyButton{
+      width: 60%;
+      align-self: center;
+      height: 50px;
+      border-radius: 10px;
+      border: none;
+      background-color: #CE9DD9;
+      color: white;
+      font-size: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-left: 120px;
+  }
+  .verifyButton:focus{
+    outline: none;
+  }
+  
+  .verifyButton:disabled{
+    cursor: not-allowed;
+  }
+  
+  
+  
+  .accountButton{
+      width: 40%;
+      align-self: center;
+      height: 50px;
+      border-radius: 10px;
+      border: none;
+      background-color: #fddd5c;
+      color: white;
+      font-size: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-left: 180px;
+  }

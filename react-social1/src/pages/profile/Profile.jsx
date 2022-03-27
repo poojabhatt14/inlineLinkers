@@ -48,7 +48,7 @@ export default function Profile() {
               />
             </div>
             <div className="profileInfo">
-              <h4 className="profileInfoName">{user.username}</h4>
+              <h4 className="profileInfoName">{user.username+"@"+user.hostel}</h4>
               <span className="profileInfoDesc">{user.desc}</span>
             </div>
           </div>

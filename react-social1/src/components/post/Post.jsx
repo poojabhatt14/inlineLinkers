@@ -49,7 +49,7 @@ export default function Post({ post }) {
               />
             </Link>
             <Link to={`/profile/${user.username}` }style= {{ textDecoration: "none" }}>
-            <span className="postUsername">{user.username}</span>
+            <span className="postUsername">{user.username+"@"+user.hostel}</span>
             </Link>
             <span className="postDate">{format(post.createdAt)}</span>
           </div>

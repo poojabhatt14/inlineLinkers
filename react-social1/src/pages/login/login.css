@@ -7,21 +7,21 @@
     justify-content: center;
   }
   
-  .loginWrapper {
-    width: 70%;
-    height: 70%;
+  .loginWrapper{
+    width: 60%;
+    height: 60%;
     display: flex;
   }
 
   loginLeft,
-.loginRight {
+.loginRight{
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.loginLogo {
+.loginLogo{
   font-size: 50px;
   font-weight: 800;
     color: #CE9DD9;
@@ -75,9 +75,10 @@
 .loginForgot{
     text-align: center;
     color: #CE9DD9;
+    cursor: pointer;
 }
 
-.loginRegisterButton{
+.registerLoginButton{
     width: 60%;
     align-self: center;
     height: 50px;
@@ -88,5 +89,5 @@
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
-    margin-left: 150px;
+    margin-left: 90px;
 }

@@ -1,5 +1,6 @@
 import "./topbar.css";
 import { Search, Person, Chat, Notifications } from "@mui/icons-material";
+import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from "react-router-dom";
 import { useContext} from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -7,6 +8,8 @@ import { AuthContext } from "../../context/AuthContext";
 export default function Topbar() {
   const {user} = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  
+  
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -49,6 +52,10 @@ export default function Topbar() {
             className="topbarImg"
           />
         </Link>
+        <div className="topbarIconItem" >
+          Logout<LogoutIcon />
+          </div>
+          
       </div>
     </div>
   );
