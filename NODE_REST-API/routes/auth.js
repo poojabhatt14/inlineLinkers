@@ -75,8 +75,8 @@ router.post("/email-send", async (req, res) => {
     port: 587,
     secure: false,
     auth: {
-      user: 'poojabhatt1409@gmail.com',
-      pass: 'Magdalene2411'
+      user: '',
+      pass: ''
     }
   });
   const mailOptions = {
