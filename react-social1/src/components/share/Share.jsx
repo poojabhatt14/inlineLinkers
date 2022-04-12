@@ -4,16 +4,21 @@ import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 
+
 export default function Share() {
   const { user } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const desc = useRef();
+  const category = useRef();
   const [file, setFile] = useState(null);
+  
   const submitHandler = async (e) => {
     e.preventDefault();
     const newPost = {
       userId: user._id,
       desc: desc.current.value,
+      category: category.current.value,
+      hostel: user.hostel,
     };
     try {
       await axios.post("/posts", newPost);
@@ -36,6 +41,7 @@ export default function Share() {
           className="shareInput"
           ref = {desc}
           />
+          <input placeholder="Enter category name" className="chip" ref = {category} />
         </div>
         <hr className="shareHr"/>
         <form className="shareBottom" onSubmit={submitHandler}>

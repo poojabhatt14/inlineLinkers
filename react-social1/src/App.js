@@ -5,6 +5,7 @@ import Register from "./pages/register/Register";
 import Otpform from "./pages/otpform/Otpform";
 import Passwordform from "./pages/passwordform/Passwordform";
 import Verify from "./pages/verify/Verify";
+import SearchResult from "./pages/searchResult/SearchResult";
 
 import {
   BrowserRouter as Router,
@@ -37,6 +38,9 @@ function App() {
         </Route>
         <Route path="/password-change">
             <Passwordform />
+        </Route>
+        <Route path="/search-text">
+            <SearchResult />
         </Route>
         <Route path="/profile/:username">
           <Profile />

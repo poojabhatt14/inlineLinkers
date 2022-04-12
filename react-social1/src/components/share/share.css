@@ -22,7 +22,13 @@
 .shareInput:focus{
     outline: none;
   }
-
+.chip{
+  margin-top: 50px;
+  
+}
+.chip:focus{
+  outline: none;
+}
 .shareHr{
     margin: 20px;
 }

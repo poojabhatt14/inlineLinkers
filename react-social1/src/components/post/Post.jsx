@@ -1,22 +1,18 @@
 import "./post.css";
-import { MoreVert } from "@mui/icons-material";
-import { useContext, useEffect, useState } from "react";
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
+import { useContext,useState,useEffect } from "react";
 import axios from "axios";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Post({ post }) {
-  const [like, setLike] = useState(post.likes.length);
-  const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user: currentUser } = useContext(AuthContext);
 
-  useEffect(() => {
-    setIsLiked(post.likes.includes(currentUser._id));
-  }, [currentUser._id, post.likes]);
-
+  
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(`/users?userId=${post.userId}`);
@@ -25,13 +21,14 @@ export default function Post({ post }) {
     fetchUser();
   }, [post.userId]);
 
-  const likeHandler = () => {
+  //deleting post 
+  const deletePostOnClick = () => {
     try {
-      axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
+       axios.delete("/posts/delete/" + post._id);
     } catch (err) {}
-    setLike(isLiked ? like - 1 : like + 1);
-    setIsLiked(!isLiked);
   };
+  
+
   return (
     <div className="post">
       <div className="postWrapper">
@@ -54,23 +51,21 @@ export default function Post({ post }) {
             <span className="postDate">{format(post.createdAt)}</span>
           </div>
           <div className="postTopRight">
-            <MoreVert />
+          {post.userId === currentUser._id 
+            ? <DeleteOutlineOutlinedIcon className="delete" onClick={deletePostOnClick}/>
+            : <MoreVertOutlinedIcon className="delete"/>
+           }
           </div>
+          
         </div>
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
+          <br></br>
+          <br></br>
+          <span className="categoryText">{"#"+post?.category}</span>
           <img className="postImg" src={PF + post.img} alt="" />
         </div>
         <div className="postBottom">
-          <div className="postBottomLeft">
-            <img
-              className="likeIcon"
-              src={`${PF}like.png`}
-              onClick={likeHandler}
-              alt=""
-            /> 
-            <span className="postLikeCounter">{like} people like it</span>
-          </div>
           <div className="postBottomRight">
             <span className="postCommentText">{post.comment} comments</span>
           </div>

@@ -32,14 +32,25 @@
     font-size: 15px;
     font-weight: 500;
     margin: 0 10px;
+    color:#7C5295;
   }
   
   .postDate{
       font-size: 12px;
   }
 
+  .delete{
+    cursor: pointer;
+    color:#836953;
+  }
+
   .postCenter{
     margin: 20px 0;
+}
+
+.categoryText{
+  color:#7C5295;
+  font-weight: 500;
 }
 
 .postImg{

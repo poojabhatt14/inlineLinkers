@@ -1,0 +1,68 @@
+.searchbarContainer{
+    height:50px;
+    width:100%;
+    background-color: #CE9DD9;
+    display:flex;
+    align-items: center;
+    position:sticky;
+    top:0;
+    z-index: 999;
+}
+.logo{
+    font-size: 24px;
+    margin-left: 20px;
+    font-weight: bold;
+    color:#836953;
+    cursor:pointer;
+}
+.searchbarLeft{
+    flex:2;
+}
+.searchbarCenter{
+    flex:4;
+}
+.searchbar{
+    width: 50%;
+    height: 30px;
+    background-color: white;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+.searchIcon{
+    font-style: 20px !important;
+    margin-left: 10px;
+}
+
+.searchButton{
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    background-color: #fddd5c;
+    color: white;
+    font-size: 15px;
+    font-weight: 50;
+    cursor: pointer;
+    margin-left: 60px;
+}
+.searchInput{
+    border:none;
+    width: 70%;
+}
+.searchInput:focus{
+    outline: none;
+}
+
+.topbarImg{
+     margin-right: 30px;
+}
+
+.feed{
+    flex: 5.5;
+}
+
+.searchedPosts{
+    width: 40%;
+    margin-left: 450px;
+}

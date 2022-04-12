@@ -1,5 +1,5 @@
 import "./topbar.css";
-import { Search, Person, Chat, Notifications } from "@mui/icons-material";
+import { Search} from "@mui/icons-material";
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from "react-router-dom";
 import { useContext} from "react";
@@ -9,7 +9,6 @@ export default function Topbar() {
   const {user} = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   
-  
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -18,28 +17,14 @@ export default function Topbar() {
         </Link>
       </div>
       <div className="topbarCenter">
-        <div className="searchbar">
-          <Search className="searchIcon" />
-          <input
-            placeholder="Search for friend, post or video"
-            className="searchInput"
-          />
-        </div>
+        
       </div>
       <div className="topbarRight">
         <div className="topbarIcons">
-          <div className="topbarIconItem">
-            <Person />
-            <span className="topbarIconBadge">1</span>
-          </div>
-          <div className="topbarIconItem">
-            <Chat />
-            <span className="topbarIconBadge">2</span>
-          </div>
-          <div className="topbarIconItem">
-            <Notifications />
-            <span className="topbarIconBadge">1</span>
-          </div>
+        <Link to="/search-text" style={{ textDecoration: "none" }}>
+        <Search className="searchIcon" />
+        <span className="searchText">Search</span>
+      </Link>
         </div>
         <Link to={`/profile/${user.username}`}>
           <img
@@ -52,7 +37,7 @@ export default function Topbar() {
             className="topbarImg"
           />
         </Link>
-        <div className="topbarIconItem" >
+        <div className="logout" >
           Logout<LogoutIcon />
           </div>
           
