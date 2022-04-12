@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const Post = require("../models/Post");
 const User = require("../models/User");
-
 //create a post
 
 router.post("/", async (req, res) => {
@@ -30,15 +29,11 @@ router.put("/:id", async (req, res) => {
 });
 //delete a post
 
-router.delete("/:id", async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
-    if (post.userId === req.body.userId) {
       await post.deleteOne();
       res.status(200).json("the post has been deleted");
-    } else {
-      res.status(403).json("you can delete only your post");
-    }
   } catch (err) {
     res.status(500).json(err);
   }
@@ -59,6 +54,28 @@ router.put("/:id/like", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get("/search/:searchText", async (req, res) => {
+  console.log(req.params.searchText)
+  const user = await User.findOne({ username: req.params.searchText});
+  const userH = await User.findOne({hostel:req.params.searchText})
+  try {
+    let posts;
+    if(user){
+      posts = await Post.find({ userId: user._id });
+    }else if(userH){
+      posts = await Post.find({ hostel:req.params.searchText });
+    }
+    else {
+      posts = await Post.find({category:req.params.searchText})
+    }
+    res.status(200).json(posts);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
 //get a post
 
 router.get("/:id", async (req, res) => {
@@ -72,16 +89,11 @@ router.get("/:id", async (req, res) => {
 
 //get timeline posts
 
-router.get("/timeline/:userId", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const currentUser = await User.findById(req.params.userId);
-    const userPosts = await Post.find({ userId: currentUser._id });
-    const friendPosts = await Promise.all(
-      currentUser.followings.map((friendId) => {
-        return Post.find({ userId: friendId });
-      })
-    );
-    res.status(200).json(userPosts.concat(...friendPosts));
+    let posts;
+    posts = await Post.find();
+    res.status(200).json(posts);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -98,5 +110,9 @@ router.get("/profile/:username", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+//get posts
+
+
 
 module.exports = router;

@@ -9,6 +9,10 @@ const PostSchema = new mongoose.Schema({
         type:String,
         max:500,
     },
+    category:{
+        type:String,
+        required:true,
+    },
     img:{
         type:String,
     },
@@ -20,6 +24,11 @@ const PostSchema = new mongoose.Schema({
         type:Array,
         default:[],
     },
+    hostel:{
+        type:String,
+        required:true,
+        max:70,
+    }
 },
 { timestamps:true}
 );
