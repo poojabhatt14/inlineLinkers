@@ -40,19 +40,57 @@ router.delete("/:id" , async(req,res) =>{
     }
 });
 //get a user 
-router.get("/",async (req,res)=>{
+router.get("/", async (req, res) => {
     const userId = req.query.userId;
     const username = req.query.username;
-    try{
-        const user= userId 
-        ? await User.findById(userId) 
-        : await User.findOne({username:username});
-        const {password,updatedAt,...other}=user._doc;
-        res.status(200).json(other);
-    }catch(err){
-         res.status(500).json(err);
+    try {
+      const user = userId
+        ? await User.findById(userId)
+        : await User.findOne({ username: username });
+      const { password, updatedAt, ...other } = user._doc;
+      res.status(200).json(other);
+    } catch (err) {
+      res.status(500).json(err);
     }
-});
+  });
+
+  //search for a user 
+  router.get("/search/:searchText", async (req, res) => {
+    const user = await User.findOne({ username: req.params.searchText});
+    const userH = await User.find({hostel:req.params.searchText})
+    try {
+        if(user){
+            const { password, updatedAt, ...other } = user._doc;
+            res.status(200).json(other);
+          }else {
+            let userList = [];
+            userH.map((user) => {
+              const { _id, username, profilePicture,hostel } = user;
+              userList.push({ _id, username, profilePicture,hostel });
+            });
+            res.status(200).json(userList);
+          }
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+  //get all users 
+  router.get("/find", async (req, res) => {
+    try {
+        const users = await User.find();
+        let userList = [];
+      users.map((user) => {
+        const { _id, username, profilePicture,hostel } = user;
+        userList.push({ _id, username, profilePicture,hostel });
+      });
+      res.status(200).json(userList);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+  
 
 //get friends
 router.get("/friends/:userId", async (req, res) => {

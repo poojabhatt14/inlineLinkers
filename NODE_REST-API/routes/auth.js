@@ -52,10 +52,9 @@ router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     !user && res.status(404).json("user not found");
-
+    console.log(user.password)
     const validPassword = await bcrypt.compare(req.body.password, user.password)
     !validPassword && res.status(400).json("wrong password")
-
     res.status(200).json(user)
   } catch (err) {
     res.status(500).json(err)
@@ -75,8 +74,8 @@ router.post("/email-send", async (req, res) => {
     port: 587,
     secure: false,
     auth: {
-      user: '',
-      pass: ''
+      user: 'poojabhatt1409@gmail.com',
+      pass: 'Magdalene2411'
     }
   });
   const mailOptions = {
@@ -101,8 +100,7 @@ router.post("/email-send", async (req, res) => {
     }
   });
   }catch(err){
-    responseType.statusText = "Error"
-  responseType.message = "Invalid email id";
+    res.status(500).json(err);
   }
   res.status(200).json(responseType);
 });
@@ -120,7 +118,7 @@ router.post("/change-password", async (req, res) =>{
     }else{
       let user = await User.findOne({email:req.body.email});
       user.password = req.body.password;
-      user.save;
+      await user.save;
       response.message = "Password Changed Successfully";
       response.statusText = "Success";
     }
@@ -128,7 +126,7 @@ router.post("/change-password", async (req, res) =>{
     response.message = "Invalid Otp";
     response.statusText = "Error";
   }
-  res.status(200).json(data);
+  res.status(200).json(response);
 });
 
 

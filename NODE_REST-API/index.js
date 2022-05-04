@@ -7,7 +7,11 @@ const morgan = require("morgan");
 const userRoute = require("./routes/users.js");
 const authRoute = require("./routes/auth.js");
 const postRoute = require("./routes/posts.js");
+const conversationRoute = require("./routes/conversations");
+const messageRoute = require("./routes/messages");
 const categoryRoute = require("./routes/categories.js");
+
+
 dotenv.config();
 
 /*mongodbconnection*/
@@ -19,15 +23,21 @@ mongoose.connect(
     }
     );
 
+
 //middleware
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
+
+
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/categories",categoryRoute);
+app.use("/api/conversations", conversationRoute);
+app.use("/api/messages", messageRoute);
+
 app.listen(8800, () =>{
     console.log("Backend server is running!");
 });

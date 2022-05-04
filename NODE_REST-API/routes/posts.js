@@ -55,6 +55,9 @@ router.put("/:id/like", async (req, res) => {
   }
 });
 
+//comment on a post
+
+//search a post
 router.get("/search/:searchText", async (req, res) => {
   console.log(req.params.searchText)
   const user = await User.findOne({ username: req.params.searchText});
@@ -111,7 +114,7 @@ router.get("/profile/:username", async (req, res) => {
   }
 });
 
-//get posts
+
 
 
 

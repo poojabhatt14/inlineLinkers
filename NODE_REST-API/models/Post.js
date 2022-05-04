@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const {ObjectId} = mongoose.Schema.Types
 const PostSchema = new mongoose.Schema({
     userId: {
         type:String,
@@ -20,10 +20,10 @@ const PostSchema = new mongoose.Schema({
         type:Array,
         default:[],
     },
-    comments:{
-        type:Array,
-        default:[],
-    },
+    comments:[{
+        text:String,
+        postedBy:{type:ObjectId,ref:"User"}
+    }],
     hostel:{
         type:String,
         required:true,
