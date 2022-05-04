@@ -1,7 +1,7 @@
 import "./sidebar.css"
 import {Feed,Bookmark,Groups} from "@mui/icons-material"
-//import { Users } from "../../dummyData";
-import Friend from "../friend/Friend";
+
+
 
 export default function Sidebar() {
     return (

@@ -11,6 +11,8 @@ export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [user, setUser] = useState({});
   const username = useParams().username;
+  const [file, setFile] = useState(null);
+
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -19,6 +21,19 @@ export default function Profile() {
     };
     fetchUser();
   }, [username]);
+
+  const updateOnClick = async() => {
+    if (file) {
+      const data = new FormData();
+      const fileName = Date.now() + file.name;
+      data.append("name", fileName);
+      data.append("file", file);
+      user.profilePicture = fileName;
+      try {
+        await axios.put("/users/"+user._id, data);
+      } catch (err) {}
+    }
+  };
 
   return (
     <>
@@ -43,7 +58,8 @@ export default function Profile() {
                   user.profilePicture
                     ? PF + user.profilePicture
                     : PF + "person/noAvatar.png"
-                } 
+                }
+                onClick={updateOnClick} 
                 alt=""
               />
             </div>

@@ -67,7 +67,11 @@ export default function Post({ post }) {
         </div>
         <div className="postBottom">
           <div className="postBottomRight">
-            <span className="postCommentText">{post.comment} comments</span>
+            <input
+            placeholder="add a comment"
+            type="text"
+            className="commentInput"
+          />
           </div>
         </div>
       </div>

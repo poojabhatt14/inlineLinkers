@@ -82,8 +82,12 @@
     font-size: 15px;
 }
 
-.postCommentText{
-    cursor: pointer;
-    border-bottom: 1px dashed gray;
-    font-size: 15px;
+.commentInput {
+  width: 300%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid gray;
+}
+.commentInput:focus{
+  outline: none;
 }

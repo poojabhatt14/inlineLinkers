@@ -1,5 +1,6 @@
 import "./topbar.css";
 import { Search} from "@mui/icons-material";
+import ChatIcon from '@mui/icons-material/Chat';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from "react-router-dom";
 import { useContext} from "react";
@@ -26,17 +27,24 @@ export default function Topbar() {
         <span className="searchText">Search</span>
       </Link>
         </div>
-        <Link to={`/profile/${user.username}`}>
-          <img
-          src={
-            user.profilePicture
-              ? PF + user.profilePicture
-              : PF + "person/noAvatar.png"
-          }
-            alt=""
-            className="topbarImg"
-          />
+        <div className="topbarIcons">
+        <Link to="/messenger" style={{ textDecoration: "none" }}>
+        <ChatIcon className="searchIcon" />
+        <span className="searchText"></span>
         </Link>
+        </div>
+        <Link to={`/profile/${user.username}`}>
+        <img
+        src={
+          user.profilePicture
+            ? PF + user.profilePicture
+            : PF + "person/noAvatar.png"
+        }
+          alt=""
+          className="topbarImg"
+        />
+      </Link>
+          
         <div className="logout" >
           Logout<LogoutIcon />
           </div>

@@ -6,7 +6,7 @@ import Otpform from "./pages/otpform/Otpform";
 import Passwordform from "./pages/passwordform/Passwordform";
 import Verify from "./pages/verify/Verify";
 import SearchResult from "./pages/searchResult/SearchResult";
-
+import Messenger from "./pages/messenger/Messenger";
 import {
   BrowserRouter as Router,
   Switch,
@@ -41,6 +41,9 @@ function App() {
         </Route>
         <Route path="/search-text">
             <SearchResult />
+        </Route>
+        <Route path="/messenger">
+        <Messenger /> 
         </Route>
         <Route path="/profile/:username">
           <Profile />

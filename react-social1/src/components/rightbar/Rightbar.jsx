@@ -1,13 +1,6 @@
 import  "./rightbar.css";
-import { useContext, useEffect, useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
 
 export default function Rightbar({ user }) {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const { user: currentUser,dispatch  } = useContext(AuthContext);
-  
     const HomeRightbar = () => {
     return (
       <>

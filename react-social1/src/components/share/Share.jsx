@@ -22,7 +22,7 @@ export default function Share() {
     };
     try {
       await axios.post("/posts", newPost);
-      window.location.reload();
+      
     } catch (err) {}
   };
 
@@ -45,22 +45,6 @@ export default function Share() {
         </div>
         <hr className="shareHr"/>
         <form className="shareBottom" onSubmit={submitHandler}>
-          <div className="shareOptions">
-            <label htmlFor ="file" className="shareOption">
-              <span className="shareOptionText">Photo/video</span>
-              <input
-                style={{ display: "none" }}
-                type="file"
-                id="file"
-                accept=".png,.jpeg,.jpg"
-                onChange={(e) => setFile(e.target.files[0])}
-              />
-            </label>
-            <div className="shareOption">
-                    <Room htmlColor="green" className="shareIcon"/>
-                    <span className="shareOptionText">Location</span>
-            </div>
-          </div>
           <button className="shareButton" type="submit">Share</button>
         </form>
     </div>
